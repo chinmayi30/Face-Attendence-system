@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome, Student</h1>
+    <p>Mark your attendance using the face scanner below.</p>
+
+    <video id="camera" width="320" height="240" autoplay></video><br><br>
+    <button class="btn" onclick="markAttendance()">Start Face Scan</button>
+
+    <p id="status">Waiting for face scan...</p>
+    <a href="index.html" class="btn">🚪 Logout</a>
+
+    <script>
+      const video = document.getElementById('camera');
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => video.srcObject = stream)
+        .catch(err => console.error("Camera access denied.", err));
+
+      function markAttendance() {
+        document.getElementById('status').textContent = "✅ Attendance marked successfully!";
+      }
+    </script>
+  </div>
+</body>
+</html>
